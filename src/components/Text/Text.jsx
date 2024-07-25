@@ -8,7 +8,7 @@ export const Text = () => {
 
   return (
     <div id="quote-text" className={styles.quoteText} style={{ opacity: "1" }}>
-      <i className={`${styles.fa} ${styles.faQuoteLeft}`}></i>
+      <i id="fa" className={`${styles.fa} ${styles.faQuoteLeft}`}></i>
       <span id="text">{quote}</span>
       <div className={styles.quoteAuthor} style={{ opcaity: "1" }}>
         - <span id="author">{author}</span>

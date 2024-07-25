@@ -1,13 +1,25 @@
 import { useDispatch } from "react-redux";
 import styles from "./ButtonWrapper.module.css";
 import { fetchQuotes } from "../../redux/quotes/quotesOperation";
+import { changeColors } from "../../utils";
+import $ from "jquery";
 
 export const ButtonWrapper = () => {
-const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-const handleNewQuote = ()=> {
-dispatch(fetchQuotes());
-}
+  const handleNewQuote = () => {
+    $("#quote-text").fadeOut(500, () => {
+      dispatch(fetchQuotes())
+        .unwrap()
+        .then(() => {
+          changeColors();
+          $("#quote-text").fadeIn(500);
+        })
+        .catch((error) => {
+          console.error("Failed to fetch quotes: ", error);
+        });
+    });
+  };
 
   return (
     <div className={styles.buttons}>
